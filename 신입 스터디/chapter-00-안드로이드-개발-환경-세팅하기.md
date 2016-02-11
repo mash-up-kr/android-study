@@ -49,7 +49,7 @@ Android Studio의 경우 Java 절대 경로를 찾아 직접 Java와 연결되�
 
 윈도우에서 notepad를 열어 다음의 내용을 복사한다.
 
-```
+```bat
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_HOME /d "Java를 설치 한 경로"
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path /d "%Path%;%%JAVA_HOME%%\bin\"
 ```
@@ -68,7 +68,7 @@ Mac OSX의 경우, 사용자 루트 폴더에 있는 .bash_profile 파일에 환
 
 Terminal 앱에서 다음과 같이 실행한다.
 
-```
+```sh
 $ vim .bash_profile 
 
 export JAVA_HOME=$(Java를 설치한 경로)
