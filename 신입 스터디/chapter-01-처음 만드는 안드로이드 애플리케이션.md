@@ -41,6 +41,9 @@ domain에 `mash-up.co.kr` 작성
 ### 뷰 계층 구조
 
 -> **ViewHierarchy.png** 들어감
+![ViewHierarchy][ViewHierarchy.png]
+
+[ViewHierarchy.png]:https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/ViewHierarchy.png
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
