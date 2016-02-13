@@ -40,7 +40,6 @@ domain에 `mash-up.co.kr` 작성
 
 ### 뷰 계층 구조
 
--> **ViewHierarchy.png** 들어감
 ![ViewHierarchy][ViewHierarchy.png]
 
 [ViewHierarchy.png]:https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/ViewHierarchy.png
@@ -107,8 +106,6 @@ FrameLayout은 ....?
 위젯이 ViewGroup에 포함될 때 그 위젯은 그 ViewGroup의 자식(child)이라고 한다.
 
 여기서는 루트 LinearLayout에 1개의 Button을 자식으로 가진다.
-
-
 
 
 ## 최상위 뷰(View)의 속성
@@ -326,30 +323,26 @@ android:src="@drawable/ic_launcher"
 
 
 
-
-
-
-
-
-
-
-
-
-
 ## 안드로이드 화면 구성
 
--screen form.png 추가
+![screen_form][screen_form.png]
+
+[screen_form.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/screen_form.png
 
 하나의 안드로이드 화면은 Activity가 관리하며, 화면은 다른 View들을 내부에 담는 ViewGroup과 화면 요소를 구성하는 Widget으로 구성
 View는 주로 XML로 선언하나 Java Code에서 작성 가능
 
 ### 위젯: 화면 입출력 요소를 표현하는 뷰
 
--> Widget.png 추가
+![Widget][Widget.png]
+
+[Widget.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/Widget.png
 
 ### ViewGroup: 위젯 또는 다른 뷰를 grouping하거나 배치할 때 사용하는 뷰
 
--> ViewGroup.png 추가
+![ViewGroup][ViewGroup.png]
+
+[ViewGroup.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/ViewGroup.png
 
 ### LayoutParams: 화면 배치정보
 * 화면 구성을 위해 자식뷰가 부모 뷰그룹에 요청하는 배치 정보
@@ -398,6 +391,10 @@ btn.setLayoutParams(params);  //Button에 width, height 설정
    * 해당 방향의 크기는 자동으로 설정되므로
  * 레이아웃의 유연성 유지를 위해 유용
 
+![linearLayout][linearLayout.png]
+
+[linearLayout.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/linearLayout.png
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
@@ -429,6 +426,10 @@ android:orientation="vertical">
 * 뷰들의 상대적인 관계로 배치 -> **id 필수**
  * 기준이 되는 뷰에 반드시 **id**를 지정
 * 특정 뷰가 다른 뷰의 위치에 종속적일 때 기준이 되는 뷰를 먼저 정의
+
+![relativeLayout][relativeLayout.png]
+
+[relativeLayout.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/relativeLayout.png
 
 ```xml
 <RelativeLayout
@@ -502,7 +503,6 @@ ex) setContentView(R.layout.activity_main);
 이 메소드를 호출할 때 레이아웃의 리소스ID를 인자로 전달하여 처리할 레이아웃을 지정
 
 
-
 > ### 전개(Inflation)
 > * #### Inflation
 >   1. 인플레이션, 통화 팽창; 인플레이션율, 물가 상승율
@@ -536,7 +536,9 @@ ex) 레이아웃 리소스 ID - R.layout.activity_main
 리소스 ID는 안드로이드 빌드 프로세스에서 자동으로 생성되어 R.java파일에 정의 -> **임의로 수정하면 안된다.**
 module명/build/generated/source/r/debug/package명/ 아래에 존재
 
--> **R.png 들어감**
+![R][R.png]
+
+[R.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/R.png
 
 > ##### R.java가 사라졌을 때?
 > 프로젝트 진행 중 `R.layout.activity_main`과 같은 R.java에 정의된 id에 에러가 생길 때가 있다.
