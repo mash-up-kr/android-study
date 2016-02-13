@@ -20,9 +20,9 @@
 ## 앱 기본사항
 앱은 하나의 Activity와 하나의 layout으로 구성된다.
 
-Activity는 안드로이드 SDK의 Activity의 인스턴스(객체)이다. Activity는 화면을 통해 사용자가 작업할 수 있게 해준다.
+Activity는 안드로이드 SDK의 Activity의 인스턴스(객체)며, 화면을 통해 사용자와 상호작용할 수 있게 해준다.
 
-layout은 사용자 인터페이스 객체들과 그것들의 화면 위치를 정의한다. layout은 XML로 작성된 정의들로 구성된다.
+Layout은 사용자 인터페이스(User Interface: UI) 객체들과 그것들의 화면 위치를 정의한다. Layout은 XML로 작성된 정의들로 구성되며,
 각 정의는 버튼이나 텍스트처럼 화면에 나타나는 하나의 객체를 생성하는데 사용된다.
 
 Activity --> 화면 <-- layout.xml
@@ -40,25 +40,51 @@ domain에 `mash-up.co.kr` 작성
 
 ### 뷰 계층 구조
 
--> 샘플 앱의 뷰 계층 구조 그림 챕처해서.. 들어감
+-> **ViewHierarchy.png** 들어감
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context="kr.co.mash_up.firstapp.MainActivity">
+    android:layout_height="match_parent">
 
-     <Button
-        android:id="@+id/button_show_toast"
-        android:text="Toast 출력"
+    <LinearLayout
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="fitXY"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:hint="ID"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <EditText
+            android:hint="Password"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/button_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인"/>
+    </LinearLayout>
+</RelativeLayout>
 ```
 
 widget: 텍스트나 그래픽을 보여줄 수 있고, 사용자와 상호 동작할 수 있으며, 화면에 다른 위젯을 배열할 수도 있다.
@@ -392,7 +418,7 @@ android:orientation="vertical">
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Button3"/>
-    
+
 </LinearLayout>
 ```
 
@@ -474,12 +500,21 @@ ex) setContentView(R.layout.activity_main);
 
 
 
-<추가> 
-inflate가 뭔지에 대해 추가
-
-
-
-
+> ### 전개(Inflation)
+> * #### Inflation
+>   1. 인플레이션, 통화 팽창; 인플레이션율, 물가 상승율
+>   2. (공기나 가스로) 부풀리기
+>
+> * xml에서 정의된 Layout과 View속성을 읽어 실제 객체를 생성하는 동작
+> 
+> * Layout의 정보대로 객체를 생성하고 속성변경 메소드를 순서대로 호출
+>   * 코드에서 직접할 수 있다.
+>
+> * xml에서 기술한 Layout은 이진형태로 컴파일되어 실행 파일에 내장
+>  * 실행시 객체로 생성되어 존재
+> 
+> * Activity의 onCreate()안의 **setContentView()**가 하는 역할
+> 
 
 
 
@@ -498,19 +533,12 @@ ex) 레이아웃 리소스 ID - R.layout.activity_main
 리소스 ID는 안드로이드 빌드 프로세스에서 자동으로 생성되어 R.java파일에 정의 -> **임의로 수정하면 안된다.**
 module명/build/generated/source/r/debug/package명/ 아래에 존재
 
--> R.png 들어감
+-> **R.png 들어감**
 
 > ##### R.java가 사라졌을 때?
-> ㄹㅇ
-> ㄹㅇ
-> ㄹㅇ
-> ㄹㅇ
-> ㄹㅇ
-> ㄹㅇ
-> ㄹㅇ
-> ㄹㅇ
-
-
+> 프로젝트 진행 중 `R.layout.activity_main`과 같은 R.java에 정의된 id에 에러가 생길 때가 있다.
+> **R.java가 사라져서 참조할 수 없을 때** 생기는 에러인데
+> 이 경우 리소스의 xml에 오류가 없는지 확인한 뒤 `Android Studio 메뉴에 [Build] - [Clean Project]`를 해주면 R.java가 생겨 에러가 사라진다.
 
 ## 위젯을 코드와 연결하기
 
@@ -722,6 +750,21 @@ btnShowToast.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
+> #### 핸들러 우선순위
+> * 이벤트 핸들러가 중복 정의된 경우 처리 순서
+>  * 범위가 좁은 핸들러가 먼저 호출
+>  * 단, 우선순위 핸들러에서 true를 반환하면 다음 순위 핸들러는 호출되지 않음
+
+> #### 클릭 리스너 등록 방법
+> 1. setOnClickListener()
+> ```Java
+> Button.setOnClickListener(listener);
+> ```
+> 2. XML에서 onClick 속성
+> ```xml
+> android:onClick="onClick"
+> ```
+
 #### 토스트 만들기
 버튼을 누르면 토스트(Toast)라고 하는 팝업 메시지를 출력
 
@@ -802,24 +845,24 @@ getApplicationContext()는 프로세스 자체이기 떄문에 메모리 누수�
 ### 모델 - 뷰 - 컨트롤러(MVC)
 
 ####모델(Model)
-애플리케이션의 데이터와 **비즈니스 로직**을 갖는다.
+애플리케이션의 **데이터**와 **비즈니스 로직**을 갖는다.
 모델객체는 사용자 인터페이스를 모른다.
 데이터를 보존하고 관리하는 것이 유일한 목적
 
 
 ####뷰(View)
 자신을 화면에 그리는 방법과 터치나 마우스 클릭과 같은 사용자의 입력에 응답하는 방법을 안다.
-화면에서 볼 수 있는 것이라면 뷰 객체
+**화면에서 볼 수 있는 것**이라면 뷰 객체
 안드로이드는 구성 가능한 뷰 클래스들을 풍부하게 제공
 커스텀 뷰 클래스들을 생성할 수도 있다.
 
 
 ####컨트롤러(Controller)
-뷰와 모델객체들을 결속시키며, **애플리케이션**로직을 가진다.
-뷰 객체에 의해 촉발되는 다양한 이벤트들에 응답하고, 모델 및 뷰 계층과 주고받는 데이터의 흐름을 관리하기위해 설계
+**뷰와 모델객체를 결속**시키며, **애플리케이션 로직**을 가진다.
+뷰 객체에 의해 촉발되는 다양한 이벤트들에 응답하고, **모델 및 뷰 계층과 주고받는 데이터의 흐름을 관리**하기위해 설계
 일반적으로 Activity, Fragment, Service의 서브클래스
-Activity, Fragment는 뷰와 컨트롤러의 특성을 모두 가지고 있다.
-View나 Controller를 한쪽으로 빼개 될 경우 View에 대한 바인딩이나 처리에서 중복 코드를 작성할 수 있다. -> 개선하기 위한 패턴 등장 MVVC, MVP
+> Activity, Fragment는 뷰와 컨트롤러의 특성을 모두 가지고 있다.
+> View나 Controller를 한쪽으로 빼개 될 경우 View에 대한 바인딩이나 처리에서 중복 코드를 작성할 수 있다. -> 개선하기 위한 패턴 등장 MVVC, MVP
 
 **MVC 그림 추가**
 
