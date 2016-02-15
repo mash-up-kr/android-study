@@ -42,7 +42,7 @@ domain에 `mash-up.co.kr` 작성
 
 ![ViewHierarchy][ViewHierarchy.png]
 
-[ViewHierarchy.png]:https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/ViewHierarchy.png
+[ViewHierarchy.png]:https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/ViewHierarchy.png
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -327,7 +327,7 @@ android:src="@drawable/ic_launcher"
 
 ![screen_form][screen_form.png]
 
-[screen_form.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/screen_form.png
+[screen_form.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/screen_form.png
 
 하나의 안드로이드 화면은 Activity가 관리하며, 화면은 다른 View들을 내부에 담는 ViewGroup과 화면 요소를 구성하는 Widget으로 구성
 View는 주로 XML로 선언하나 Java Code에서 작성 가능
@@ -336,13 +336,13 @@ View는 주로 XML로 선언하나 Java Code에서 작성 가능
 
 ![Widget][Widget.png]
 
-[Widget.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/Widget.png
+[Widget.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/Widget.png
 
 ### ViewGroup: 위젯 또는 다른 뷰를 grouping하거나 배치할 때 사용하는 뷰
 
 ![ViewGroup][ViewGroup.png]
 
-[ViewGroup.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/ViewGroup.png
+[ViewGroup.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/ViewGroup.png
 
 ### LayoutParams: 화면 배치정보
 * 화면 구성을 위해 자식뷰가 부모 뷰그룹에 요청하는 배치 정보
@@ -393,7 +393,7 @@ btn.setLayoutParams(params);  //Button에 width, height 설정
 
 ![linearLayout][linearLayout.png]
 
-[linearLayout.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/linearLayout.png
+[linearLayout.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/linearLayout.png
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -429,7 +429,7 @@ android:orientation="vertical">
 
 ![relativeLayout][relativeLayout.png]
 
-[relativeLayout.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/relativeLayout.png
+[relativeLayout.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/relativeLayout.png
 
 ```xml
 <RelativeLayout
@@ -538,7 +538,7 @@ module명/build/generated/source/r/debug/package명/ 아래에 존재
 
 ![R][R.png]
 
-[R.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/R.png
+[R.png]: https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter01/art/R.png
 
 > ##### R.java가 사라졌을 때?
 > 프로젝트 진행 중 `R.layout.activity_main`과 같은 R.java에 정의된 id에 에러가 생길 때가 있다.
