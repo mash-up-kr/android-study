@@ -15,7 +15,7 @@
 
 ## 액티비티 생명주기 로깅하기
 ### 액티비티 생명주기 함수
-![lifecycle.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/activity_lifecycle.PNG)  
+![lifecycle.png]https://github.com/mash-up-kr/android-study/blob/chapter-03/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/activity_lifecycle.png)  
 위 그림과 같이 액티비티가 실행되고 종료될 때까지 일곱 가지 함수가 호출된다.
 
 예제를 통해 직접 확인해본다.
@@ -101,8 +101,8 @@ Log.d(..)를 호출하여 메세지를 로깅하기 전에 수퍼 클래스에 �
 ```
 
 ## 액티비티 상태에 따라 호출되는 생명주기 함수
-액티비티는 다섯가지 상태 변화를 가진다.
-![activity_state_change.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/activity_state_change.png)  
+액티비티는 다섯가지 상태 변화를 가진다.  
+![activity_state_change.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/activity_state_change.png)  
 
 ### 액티비티 실행과 종료 상태
 사용자가 액티비티를 실행하고 이전키를 통해 종료하는 아주 일반적인 상황이다.  
@@ -137,7 +137,7 @@ onDestroy 함수는 추가되지 않았다. 안드로이드의 경우 생성된 
 
 ### 액티비티 일시 정지와 재실행 상태
 액티비티 일시 정지는 실행된 액티비티 뒤에 이전 액티비티가 보이는 상태다.
-![lifecycle_03.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/lifecycle_03.PNG)  
+![lifecycle_03.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/lifecycle_03.PNG)  
 
 액티비티 실행된 상태에서 새로운 액티비티가 실행함  
 -> 새로운 액티비티 실행됨. 새로 실행된 액티비티는 화면을 가득 채우지 않아 이전 액티비티가 보임. 이때 **onPause** 함수가 호출된다.  
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
 정지 상태는 일시 정지 상태와 달리 화면을 완전히 가린 다른 액티비티가 실행된 상태를 말한다.   
 이전 액티비티가 전혀 보이지 않는다.
 
-![lifecycle_04.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/lifecycle_04.PNG)  
+![lifecycle_04.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/lifecycle_04.PNG)  
 화면을 완전히 가릴 C 액티비티가 실행되기 전에 onPause, onStop 함수가 호출된다.  
 이전키를 눌러 C 액티비티를 종료시키면 onRestart, onStart, onResume 함수가 순서대로 호출된다.  
 여기서 onRestart 함수보다는 onStart 함수를 onStop의 짝으로 더 많이 사용한다.  
@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
 화면에 새로운 레이아웃 리소스를 적용하려면 setContentView 함수가 호출되어야 하고, 해당 함수는 대부분 onCreate 함수에서 처리한다.   따라서 아예 액티비티를 종료하고 다시 실행하여 onCreate 함수부터 다시 호출되도록 유도하는 것이다.
 
 예제를 통해 확인하자. 세로와 가로 전용 레이아웃을 구성한다.
-![add_layout_folders.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/add_layout_folders.png)
+![add_layout_folders.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/add_layout_folders.png)
 
 이런 식으로 화면 활용도를 높혀 줄 수도 있지만 굳이 가로와 세로로 분리할 필요가 없는 화면 구성도 많을 것이다.  
 이러한 경우 화면을 회전시킬 때마다 액티비티의 모든 생명주기 함수를 다시 호출하는 것은 오히려 성능만 떨어뜨릴 뿐이다.
@@ -379,7 +379,7 @@ Proc # 1: prev  B/ /LA trm: 0 1439:kr.co.mash_up.lifecycletest/u0a68 (previous)
 액티비티 생명주기 함수도 onCreate부터 onResume까지 다시 호출되었다.
 
 
-![lifecycle_05.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/lifecycle_05.PNG)  
+![lifecycle_05.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/lifecycle_05.PNG)  
 홈으로 이동하면 이전 앱 액티비티가 화면에 보이지 않는 백그라운드 상태가 된다. 이때 onPause, onStop까지 호출된다.   
 -> 현재 구동중인 앱 프로세스를 강제종료하면 앱은 종료되었음에도 onDestroy가 호출되지 않는다.  
 -> 앱으로 복귀하면 onCreate부터 다시 시작한다.
@@ -391,7 +391,7 @@ Proc # 1: prev  B/ /LA trm: 0 1439:kr.co.mash_up.lifecycletest/u0a68 (previous)
 안드로이드에서는 앱 액티비티에서 사용된 데이터를 복원하기 위해 다른 프로세스로 데이터를 잠시 백업해두는 방법을 취한다.  
 여기서 다른 프로세스는 액티비티 매니저가 존재하는 시스템 프로세스를 말한다.
 
-![lifecycle_restore.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/lifecycle_restore.PNG)  
+![lifecycle_restore.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/lifecycle_restore.PNG)  
 onSaveInstanceState 함수는 onStop 직전에 호출된다.  
 해당 함수에서는 시스템에 의한 강제 종료에 대비해서 백업할 데이터를 시스템 프로세스로 전달한다.  
 백업된 데이터는 onCreate 함수의 인자를 통해 전달된다. 그러므로 onCreate 함수에서 객체를 복원하면 된다.  
@@ -465,9 +465,9 @@ onRestoreInstanceState 함수를 재정의하면 onStart 함수 다음에 호출
 복원할 데이터는 onCreate 함수의 매개변수로도 전달된다. 따라서 onRestoreInstanceState 대신 onCreate에서도 데이터를 복원해도 된다.
 
 ## 액티비티 생명주기 다시 알아보기
-![activity_lifecycle_review.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/activity_lifecycle_review.PNG)  
+![activity_lifecycle_review.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/activity_lifecycle_review.PNG)  
 ## 두 액티비티 간 생명주기
-![activity_lifecycle_between.png](https://github.com/mash-up-kr/android-study/blob/chapter-01/신입%스터디/chapter03/images/activity_lifecycle_between.PNG)  
+![activity_lifecycle_between.png](https://github.com/mash-up-kr/android-study/blob/chapter-03/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/activity_lifecycle_between.pngG)  
 A 액티비티에서 B 액티비티를 실행하는 경우,  
 현재의 A 액티비티를 잠시 중단시키고, 실행될 B 액티비티를 빠르게 보여주기 위해 B 액티비티의 생명주기 함수를 순서대로 호출한다.   
 그 다음 이전 액티비티의 나머지 생명주기 함수가 호출되어 모든 작업을 정리하게 된다.  
