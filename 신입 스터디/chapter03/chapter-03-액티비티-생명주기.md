@@ -15,7 +15,7 @@
 
 ## 액티비티 생명주기 로깅하기
 ### 액티비티 생명주기 함수
-![lifecycle.png](https://github.com/mash-up-kr/android-study/blob/chapter-03/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/activity_lifecycle.png?raw=true)
+![lifecycle.png](https://github.com/mash-up-kr/android-study/blob/chapter-03/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/activity_lifecycle.png?raw=true)  
 위 그림과 같이 액티비티가 실행되고 종료될 때까지 일곱 가지 함수가 호출된다.
 
 예제를 통해 직접 확인해본다.
@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
 화면에 새로운 레이아웃 리소스를 적용하려면 setContentView 함수가 호출되어야 하고, 해당 함수는 대부분 onCreate 함수에서 처리한다.   따라서 아예 액티비티를 종료하고 다시 실행하여 onCreate 함수부터 다시 호출되도록 유도하는 것이다.
 
 예제를 통해 확인하자. 세로와 가로 전용 레이아웃을 구성한다.
-![add_layout_folders.png](https://github.com/mash-up-kr/android-study/blob/chapter-03/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/add_layout_folders.PNG?raw=true)
+![add_layout_folders.png](https://github.com/mash-up-kr/android-study/blob/chapter-03/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter03/images/add_layout_folders.PNG?raw=true)  
 
 이런 식으로 화면 활용도를 높혀 줄 수도 있지만 굳이 가로와 세로로 분리할 필요가 없는 화면 구성도 많을 것이다.  
 이러한 경우 화면을 회전시킬 때마다 액티비티의 모든 생명주기 함수를 다시 호출하는 것은 오히려 성능만 떨어뜨릴 뿐이다.
