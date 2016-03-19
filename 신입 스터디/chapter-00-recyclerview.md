@@ -352,3 +352,23 @@ public class SpacingItemDecoration extends ItemDecoration {
 }
 
 ```
+
+===
+
+``` gradle
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+...
+
+dependencies {
+    ...
+    compile ('com.github.ozodrukh:CircularReveal:1.3.1@aar') {
+        transitive = true;
+    }
+}
+```
