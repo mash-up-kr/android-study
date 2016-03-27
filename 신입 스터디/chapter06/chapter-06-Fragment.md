@@ -172,10 +172,82 @@ Activity에서 Container View를 찾아 Fragment를 추가한다.
 - Activity의 Layout에 Fragment를 추가할 컨테이너 뷰라고 불리는 뷰계층 필요
 
 
-### 프래그먼트 생성 과정
+### 예제를 통해 Fragment 이해하기
+
+Fragment를 사용하는 예시 중 하나인 Master Detail Flow를 구현해보며 Fragment에 대해 이해해보도록 하자!
+
+앞으로 구현할 Master Detaul Flow의 화면.
+master_detail.png 삽입
+
+간단하게 설명하자면 Master부분에 있는 리스트를 눌러 Detail쪽의 View를 바꾸는 간단한 예시이다.
+1개의 화면에서 여러 Fragment를 사용하는 구조이며 테블릿과 같은 넓은 화면에서 쓰인다.
+
+
+우선 Detail에 들어갈 간단한 Text출력하는 기능만을 가지는 Fragment 2개를 만들어 보도록하자.
+HelloFragment1, HelloFragment2라고 정의하겠다.
+
+```xml
+fragment_hello1.xml
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Hello Fragment1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>
+```
+
+```Java
+//HelloFragment1.java
+
+public class HelloFragment1 extends Fragment {
+
+    public HelloFragment1() {
+        // Required empty public constructor
+    }
+
+    public static HelloFragment1 newInstance() {
+        HelloFragment1 fragment = new HelloFragment1();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_hello1, container, false);
+    }
+}
+```
+Fragment를 위와 같이 만들었다면 똑같이 1개 더만들어서 HelloFragment2라고 하겠다.
+
+다만들었다면 이제 Master 부분에서 사용할 Fragment를 만들어보자
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 레이아웃 파일에 ui구성
-클래스를 생성하고 그것의 뷰를 우리가 정의한 레이아웃으로 설렂ㅇ
+클래스를 생성하고 그것의 뷰를 우리가 정의한 레이아웃으로 설정
 레이아웃으로부터 인플레이트 된 위젯들을 코드에 연결
 
 fragement manager -> fragment를 관리하고 액티비티의 뷰계층에 추가하는 역할
