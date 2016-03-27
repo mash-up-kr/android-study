@@ -40,12 +40,14 @@ Activity와 마찬가지로 Back Stack을 사용할 수 있으나, Activity처�
 - 테블릿과 같이 넓은 화면을 가진 경우 일반 폰과의 다른 인터페이스를 제공하기 위해 사용
 - 화면 방향에 따라 다른 UI를 구성할 경우
 
-fragment1 사진 넣기
+![Fragment1][fragment1.png]
+[fragment1.png]:https://github.com/mash-up-kr/android-study/blob/chapter-06/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter06/images/fragment1.png
 
 
 ## Fragment Life Cycle
 
-life cycle 사진 넣기
+![Fragment Life Cycle][fragment life cycle.png]
+[fragment life cycle.png]:https://github.com/mash-up-kr/android-study/blob/chapter-06/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter06/images/fragment%20life%20cycle.png
 
 ### onAttach()
 Fragment가 Activity에 붙을 때 호출
