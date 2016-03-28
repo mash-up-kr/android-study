@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ExFragment</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="menu_list">
+        <item>Hello1</item>
+        <item>Hello2</item>
+    </string-array>
+
+</resources>
