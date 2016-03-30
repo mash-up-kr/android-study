@@ -14,8 +14,8 @@ public class MasterFragment extends Fragment implements AdapterView.OnItemClickL
     OnListItemClickListener mListItemClickListener = null;
 
     // Detail Fragment를 판단하기 위한 상수
-    public static final int ITEM_TYPE_HELLO1 = 1;
-    public static final int ITEM_TYPE_HELLO2 = 2;
+    public static final int ITEM_TYPE_HELLO1 = 0;
+    public static final int ITEM_TYPE_HELLO2 = 1;
 
     public MasterFragment() {
         // Required empty public constructor
