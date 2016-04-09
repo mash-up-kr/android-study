@@ -352,11 +352,3 @@ public Dialog onCreateDialog(Bundle savedInstanceState) {
 ```java
 <activity android:theme="@android:style/Theme.Holo.Dialog" >
 ```
-
-
-
-
-
-
-
-
