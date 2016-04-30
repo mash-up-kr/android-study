@@ -262,82 +262,254 @@ menu 정의가 끝났으면 MainActivity.java에서 메뉴 리소스를 실제 �
 ``` 
 ###플로팅 컨텍스트 활용 실습
 
+![Alt text](./context_practice_list.png)
+
+**<activity_main.xml>**
+``` 
+	<Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Item 추가하기"
+        android:id="@+id/btn_add"/>
+
+    <ListView
+        android:id="@+id/mylist"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+``` 
+
+Button은 ListView의 item 추가를 위해 사용할 것이다.
+
+**<MainActivity.java>**
+
+``` 
+	private ListView listView;
+    private ArrayList<String> list; //리스트로 만들 데이터
+    private ArrayAdapter<String> adapter = null; // 데이터와 리스트 연결
+    private static final int MENU_DELETE = 0; //menuitem의 itemid
+
+    private void initiateList(){
+
+        listView = (ListView)findViewById(R.id.mylist);
+
+        list = new ArrayList<String>();
+        list.add("Item 1");
+        list.add("Item 2");
+        list.add("Item 3");
+        list.add("Item 4");
+
+        if(adapter == null){
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        }
+        listView.setAdapter(adapter);
+        registerForContextMenu(listView); //컨텍스트 메뉴에 등록하기
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initiateList();
+
+        Button addItemButton = (Button)findViewById(R.id.btn_add);
+        addItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.add("Item"); //버튼을 클릭하면 listview에 항목이 추가된다. 
+                adapter.notifyDataSetChanged(); //Listview 데이터의 변경사항을 반영
+            }
+        });
+    }
+``` 
+
+>**public ArrayAdapter (Context context, int resource, T[] objects)**
+>- context : 현재의 Context. 일반적으로 Adapter를 포함하는Activity의 instance가 들어간다.
+>- resourse : TextView를 포함하는 layout 파일의 resource ID. 각 항목들을 어떤 형식으로 나타낼 것인지 결정해준다.
+>(android.R.layout.simple_list_item_1 : 1개의 텍스트 뷰로 구성된 레이아웃)
+>- objects : ListView에 나타낼 리스트 객체. Strig[], ArrayList<String>의 객체 등이 들어갈 수 있다.
 
 
+**<컨텍스트 메뉴 생성하기>**
+``` 
+ @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("메뉴");
+        menu.add(0, MENU_DELETE, 0, "Delete");
+    }
+``` 
+**<컨텍스트 메뉴 항목 클릭하기>**
+``` 
+@Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+        super.onContextItemSelected(item);
+        switch(item.getItemId()){
+            case MENU_DELETE:
+                list.remove(info.position);
+                adapter.notifyDataSetChanged();
+                return true;
+        }
+        return false;
+    }
+``` 
+AdapterView.AdapterContextMenuInfo는 선택된 리스트 항목의 (데이터 셋에서의 위치를 포함하는) 상세 정보를 얻을 수 있게 해준다.  
+
+###컨텍스트 액션 모드 실습
+
+![Alt text](./context_practice_action.png)
+
+**<activity_main.xml>**
+``` 
+<ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ironman"
+        android:id="@+id/img_context_action"/>
+``` 
+**<context_action.xml>**
+``` 
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/iron_name"
+        android:title="아이언맨" />
+
+    <item android:id="@+id/out"
+        android:title="나가기" />
+
+</menu>
+``` 
+**<MainActivity.java>**
+``` 
+public class MainActivity extends AppCompatActivity implements View.OnLongClickListener, ActionMode.Callback {
+
+    ActionMode actionMode;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ImageView img_action = (ImageView)findViewById(R.id.img_context_action);
+        img_action.setOnLongClickListener(this);
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        MenuInflater inflater = mode.getMenuInflater();
+        inflater.inflate(R.menu.context_action, menu);
+        return true;
+
+        //startActionMode()을 호출하여 액션 모드가 생성될 때 호출된다.
+    }
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false;
+
+        //onCreateActionMode가 호출된 후에 호출된다.
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.iron_name:
+                Toast.makeText(this, "로다주!!", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.out:
+                mode.finish();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+        actionMode = null;
+        //사용자가 컨텍스트 액션 모드를 빠져나가면 호출된다.
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (actionMode != null)
+            return false;
+
+        actionMode = this.startActionMode(this);
+        v.setSelected(true);
+        return true;
+    }
+
+}
+
+``` 
 
 
+##팝업 메뉴 
+특정한 뷰에 붙어있는 메뉴이다. 만일 공간이 있으면 뷰의 아래쪽에 나타난다. 만약 아래쪽에 공간이 없다면 뷰의 위쪽에 나타나기도 한다. 
 
-### Checkbox
-You can use `- [ ]` and `- [x]` to create checkboxes, for example:
+###팝업 메뉴 실습
+![Alt text](./pop_practice.png)
 
-- [x] Item1
-- [ ] Item2
-- [ ] Item3
+``` 
+public class MainActivity extends AppCompatActivity {
 
-> **Note:** Currently it is only partially supported. You can't toggle checkboxes in Evernote. You can only modify the Markdown in Marxico to do that. Next version will fix this.  
+    Button btn_pop;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-### Dancing with Evernote
+        btn_pop = (Button)findViewById(R.id.btn_pop);
+        btn_pop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
+                MenuInflater inflater = popupMenu.getMenuInflater();
+                Menu menu = popupMenu.getMenu();
 
-#### Notebook & Tags
-**Marxico** add `@(Notebook)[tag1|tag2|tag3]` syntax to select notebook and set tags for the note. After typing `@(`, the notebook list would appear, please select one from it.  
+                inflater.inflate(R.menu.popup_menu, menu);
 
-#### Title
-**Marxico** would adopt the first heading encountered as the note title. For example, in this manual the first line `Welcome to Marxico` is the title.
+                popupMenu.setOnMenuItemClickListener
+                (new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
 
-#### Quick Editing
-Note saved by **Marxico** in Evernote would have a red ribbon button on the top-right corner. Click it and it would bring you back to **Marxico** to edit the note. 
+                        switch (item.getItemId()) {
+                            case R.id.popup_red:
+                                btn_pop.setTextColor(Color.RED);
+                                return true;
+                            case R.id.popup_green:
+                                btn_pop.setTextColor(Color.GREEN);
+                                return true;
+                            case R.id.popup_blue:
+                                btn_pop.setTextColor(Color.BLUE);
+                                return true;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
 
-> **Note:** Currently **Marxico** is unable to detect and merge any modifications in Evernote by user. Please go back to **Marxico** to edit.
+    }
+}
+```
 
-#### Data Synchronization
-While saving rich HTML content in Evernote, **Marxico** puts the Markdown text in a hidden area of the note, which makes it possible to get the original text in **Marxico** and edit it again. This is a really brilliant design because:
+**<팝업 메뉴를 생성하는 순서>**
+1. PopupMenu 클래스의 생성자로 팝업 메뉴 객체를 생성한다. 생성자는 현재 애플리케이션의 context와 메뉴가 연결되는 앵커뷰를 인수로 받는다. 
 
-- it is beyond just one-way exporting HTML which other services do;
-- and it avoids privacy and security problems caused by storing content in a intermediate server. 
-
-> **Privacy Statement: All of your notes data are saved in Evernote. Marxico doesn't save any of them.** 
-
-#### Offline Storage
-**Marxico** stores your unsynchronized content locally in browser storage, so no worries about network and broswer crash. It also keeps the recent file list you've edited in `Document Management(Ctrl + O)`.
-
-> **Note:** Although browser storage is reliable in the most time, Evernote is born to do that. So please sync the document regularly while writing.
-
-## Shortcuts
-Help    `Ctrl + /`
-Sync Doc    `Ctrl + S`
-Create Doc    `Ctrl + Alt + N`
-Maximize Editor    `Ctrl + Enter`
-Preview Doc `Ctrl + Alt + Enter`
-Doc Management    `Ctrl + O`
-Menu    `Ctrl + M`
-
-Bold    `Ctrl + B`
-Insert Image    `Ctrl + G`
-Insert Link    `Ctrl + L`
-Convert Heading    `Ctrl + H`
-
-## About Pro
-**Marixo** offers a free trial of 10 days. After that, you need to [purchase](http://marxi.co/purchase.html) the Pro service. Otherwise, you would not be able to sync new notes. Previous notes can be edited and synced all the time.
-
-## Credits
-**Marxico** was first built upon [Dillinger][5], and the newest version is almost based on the awesome [StackEdit][6]. Acknowledgments to them and other incredible open source projects!
-
-## Feedback & Bug Report
-- Twitter: [@gock2][7]
-- Email: <hustgock@gmail.com>
-
-----------
-Thank you for reading this manual. Now please press `Ctrl + M` and click `Link with Evernote`. Enjoy your **Marxico** journey!
-
-
-[^demo]: This is a demo footnote. Read the [MultiMarkdown Syntax Guide](https://github.com/fletcher/MultiMarkdown/wiki/MultiMarkdown-Syntax-Guide#footnotes) to learn more. Note that Evernote disables ID attributes in its notes , so `footnote` and `TOC` are not actually working. 
-
-  [1]: http://marxi.co/client_en
-  [2]: https://chrome.google.com/webstore/detail/kidnkfckhbdkfgbicccmdggmpgogehop
-  [3]: http://bramp.github.io/js-sequence-diagrams/
-  [4]: http://adrai.github.io/flowchart.js/
-  [5]: http://dillinger.io
-  [6]: http://stackedit.io
-  [7]: https://twitter.com/gock2
+``` 
+PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
+```
+2. MenuInflater를 이용하여 XML로 정의된 메뉴 리소스를 popupMenu.getMenu()가 반환하는 Menu객체에 추가한다. 
+``` 
+MenuInflater inflater = popupMenu.getMenuInflater();
+Menu menu = popupMenu.getMenu();
+inflater.inflate(R.menu.popup_menu, menu);
+```
+3. PopupMenu.show()를 호출한다.
 
