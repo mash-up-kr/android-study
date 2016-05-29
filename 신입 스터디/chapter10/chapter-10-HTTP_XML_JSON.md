@@ -194,7 +194,7 @@ XMLPullParser를 사용하기에 앞서 이번 실습에서는 네이버에서 �
 예제는 책을 검색하는 API를 사용한다. 그 외의 사용법을 알고 싶다면 developers.naver.com의 개발가이드를 참고하자.
 
 ## 기본 아키텍처
-![OpenApi_Architecture](http://)  
+![OpenApi_Architecture](https://github.com/mash-up-kr/android-study/blob/chapter-10/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter10/images/openApi_Architecture.png?raw=true)  
 1. OpenAPI에 보낼 URL을 작성해서 NetworkManager를 실행한다
 2. 해당 url에서 받아온 xml 결과를 String으로 저장하여 반환한다
 3. String에 저장한 xml 내용을 XMLParser에 전달한다
@@ -247,10 +247,10 @@ XMLPullParser를 사용하기에 앞서 이번 실습에서는 네이버에서 �
 
 ## Parser
 Xml 문서를 읽어서 하나의 요소를 하나의 DTO에 저장하는 작업으르 반복한다. 생성한 DTO는 ArrayList 등의 컬렉션 객체에 저장한다.
-![parser01](http://)  
+![parser01](https://github.com/mash-up-kr/android-study/blob/chapter-10/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter10/images/parser01.png?raw=true)  
 
 #### XML 문서와 DTO의 관계
-![parser02](http://)  
+![parser02](https://github.com/mash-up-kr/android-study/blob/chapter-10/%EC%8B%A0%EC%9E%85%20%EC%8A%A4%ED%84%B0%EB%94%94/chapter10/images/parser02.png?raw=true)  
 - XML 문서의 한 항목 정보 -> 하나의 DTO 객체에 저장
 - 한 항목이 포함한 태그(속성) -> DTO 객체의 하나의 멤버변수에 저장
 - 하나의 XML 문서 내의 모든 항목들 -> 하나의 컬렉션 객체(ArrayList 등)에 저장
