@@ -1,0 +1,1 @@
+include ':service_music', ':intentservice_download', ':bind_binder', ':bind_messenger', ':bind_messenger_test'

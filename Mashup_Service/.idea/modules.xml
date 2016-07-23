@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Mashup_Service.iml" filepath="$PROJECT_DIR$/Mashup_Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bind_binder/bind_binder.iml" filepath="$PROJECT_DIR$/bind_binder/bind_binder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bind_messenger/bind_messenger.iml" filepath="$PROJECT_DIR$/bind_messenger/bind_messenger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bind_messenger_test/bind_messenger_test.iml" filepath="$PROJECT_DIR$/bind_messenger_test/bind_messenger_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/intentservice_download/intentservice_download.iml" filepath="$PROJECT_DIR$/intentservice_download/intentservice_download.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service_music/service_music.iml" filepath="$PROJECT_DIR$/service_music/service_music.iml" />
+    </modules>
+  </component>
+</project>
