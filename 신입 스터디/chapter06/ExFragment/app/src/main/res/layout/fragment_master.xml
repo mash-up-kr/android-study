@@ -1,0 +1,15 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kr.co.mash_up.exfragment.MasterFragment">
+
+    <ListView
+        android:id="@+id/listView_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EEE"
+        android:entries="@array/menu_list"/>
+
+</FrameLayout>
