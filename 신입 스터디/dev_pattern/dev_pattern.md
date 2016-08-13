@@ -105,10 +105,16 @@ View에서 표시하고자하는 data를 제공해준다.
 ### View
 일반적으로 Activity에서 구현하고 Presenter에 대한 참조가 포함
 View가 하는 일은 Presenter의 인터페이스를 상속받아 메소드 호출
+화면을 구성
+사용자 행위가 일어나면 Presenter로 위임
+Presenter가 제공하는 포맷팅된 결과를 화면에 갱신
 
 ### Presenter
 View와 Model 사이의 중재자
 data를 Model로부터 받거나 View에 적합하게 돌려준다.
+사용자 상호작용을 처리하기 위해 interactor 인터페이스 호출
+interactor로 부터 결과를 수신하기 위해 Listener 인터페이스 구현
+interactor로 부터 결과를 View에 갱신하기 위해 View 메소드 호출
 
 ### 장점
 View는 Model을 따로 알고 있지 않아도 도니다.
@@ -116,20 +122,24 @@ View는 Model을 따로 알고 있지 않아도 도니다.
 ### 단점
 View와 1:1이기 때문에 View와의 강한 의존성
 
-
 > View에 대한 직접적인 접근이 요구되는 Android의 Activity는 직접적인 View 접근은 Activity가 하도록하고 이에대한 제어는 Presenter가 하도록하고 있다.
 
 
-### MVP 참고하면 좋을 자료
+### MVP 공부시 참고하면 좋을 자료
 [Simple-MVP](https://github.com/tinmegali/simple-mvp)
 [Android MVP](https://github.com/antoniolg/androidmvp)</br>
 [EffectiveAndroidUI](https://github.com/pedrovgs/EffectiveAndroidUI)</br>
+[android-arch-sample](https://github.com/remind101/android-arch-sample)</br>
 [Google Samples - Android architecture](https://github.com/googlesamples/android-architecture/tree/master)</br>
-[MODEL VIEW PRESENTER (MVP) IN ANDROID, PART 1](http://www.tinmegali.com/en/model-view-presenter-android-part-1/)
+[MODEL VIEW PRESENTER (MVP) IN ANDROID, PART 1](http://www.tinmegali.com/en/model-view-presenter-android-part-1/)</br>
+[fevi-regacy](https://github.com/dusskapark/fevi-regacy) - 이건 보기 어려울 수 있다.</br>
+[Bourbon](https://github.com/hitherejoe/Bourbon) - 이것도 보기 어려울 수 있다.</br>
+[Model-View-Presenter Architecture in Android Applications](http://macoscope.com/blog/model-view-presenter-architecture-in-android-applications/)
 
-### 참조
-[Android 와 개발패턴](http://tosslab.github.io/android/2015/03/01/01.Android-mvc-mvvm-mvp.html)
-[MVC, MVP, MVVM 차이점](http://hackersstudy.tistory.com/71)
-[MODEL VIEW PRESENTER (MVP) IN ANDROID, PART 1(번역)](http://tiii.tistory.com/24)
+## 참조
+[Android 와 개발패턴](http://tosslab.github.io/android/2015/03/01/01.Android-mvc-mvvm-mvp.html)</br>
+[MVC, MVP, MVVM 차이점](http://hackersstudy.tistory.com/71)</br>
+[MODEL VIEW PRESENTER (MVP) IN ANDROID, PART 1(번역)](http://tiii.tistory.com/24)</br>
+[MVP for Android: how to organize the presentation layer](http://antonioleiva.com/mvp-android)</br>
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">크리에이티브 커먼즈 저작자표시 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.
